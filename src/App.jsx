@@ -1,6 +1,8 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import PropertyDetail from './pages/PropertyDetail';
 import './App.css';
 
 const fakeProperties = [
@@ -30,7 +32,8 @@ const fakeProperties = [
     }
 ];
 
-function App() {
+// Component Trang chủ
+function Home() {
     return (
         <div className="app">
             {/* Navbar */}
@@ -41,7 +44,7 @@ function App() {
                 <div className="hero-overlay"></div>
                 <div className="hero-content">
                     <h1>TÌM KIẾM NGÔI NHÀ TRONG MƠ CỦA BẠN</h1>
-
+                    <p>Hàng trăm tin đăng cho thuê và mua bán nhà đất uy tín tại Bắc Từ Liêm</p>
 
                     <div className="search-container">
                         <input
@@ -58,13 +61,18 @@ function App() {
             <section className="properties">
                 <div className="container">
                     <div className="section-title">
-                        <h2>Tin đăng nổi bật tại BĐS Hà Nội</h2>
+                        <h2>Tin đăng nổi bật tại Bắc Từ Liêm</h2>
                         <p>3 tin đăng • Cập nhật mới nhất</p>
                     </div>
 
                     <div className="properties-grid">
                         {fakeProperties.map((property) => (
-                            <div className="property-card" key={property.id}>
+                            <div
+                                className="property-card"
+                                key={property.id}
+                                onClick={() => window.location.href = `/property/${property.id}`}
+                                style={{ cursor: 'pointer' }}
+                            >
                                 <img
                                     src={property.image}
                                     alt={property.title}
@@ -72,7 +80,7 @@ function App() {
                                 />
                                 <div className="property-body">
                                     <div className="property-price">
-                                        {property.price} vnd    /tháng
+                                        {property.price} ₫ /tháng
                                     </div>
                                     <h3>{property.title}</h3>
                                     <p className="property-location">📍 {property.address}</p>
@@ -85,15 +93,15 @@ function App() {
                 </div>
             </section>
 
+            {/* Phần Sự Tín Nhiệm */}
             <section className="trust-section">
                 <div className="container">
                     <div className="trust-header">
                         <span className="trust-label">GIÁ TRỊ CỐT LÕI</span>
                         <h2>Sự Tín Nhiệm Tạo Nền Đẳng Cấp</h2>
                         <p>
-                            Tại BĐS Hà Nội, chúng tôi không chỉ giao dịch bất động sản.
-                            Chúng tôi kiến tạo phong cách sống thượng lưu và bảo vệ giá trị đầu tư bền vững
-                            thông qua sự tận tâm tuyệt đối.
+                            Tại BĐS Bắc Từ Liêm, chúng tôi không chỉ giao dịch bất động sản.
+                            Chúng tôi kiến tạo phong cách sống thượng lưu và bảo vệ giá trị đầu tư bền vững.
                         </p>
                         <button className="trust-button">KHÁM PHÁ CÂU CHUYỆN</button>
                     </div>
@@ -122,6 +130,18 @@ function App() {
             {/* Footer */}
             <Footer />
         </div>
+    );
+}
+
+// Component chính chứa Router
+function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/property/:id" element={<PropertyDetail />} />
+            </Routes>
+        </Router>
     );
 }
 
