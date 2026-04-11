@@ -9,7 +9,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="nav-menu">
-                    <a href="#">Trang chủ</a>
+                    <a href="/">Trang chủ</a>
                     <a href="#">Mua bán</a>
                     <a href="#">Cho thuê</a>
                     <a href="#">Đăng tin</a>
