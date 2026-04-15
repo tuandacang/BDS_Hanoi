@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import './PropertyDetail.css';
+import './Pages.css';
 
 const properties = {
     1: {
